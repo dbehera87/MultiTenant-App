@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Frontend.Models.LicenseViewModel>
+@{
+    ViewData["Title"] = "Licenses";
+}
+
+<h2>Licenses</h2>
+<table border="1">
+    <tr><th>License No</th><th>Applicant</th><th>Agency</th><th>Status</th><th>Issue Date</th><th>Expiry Date</th></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.LicenseId</td>
+            <td>@item.LicenseNumber</td>
+            <td>@item.LicenseType</td>
+            <td>@item.Applicant</td>
+            <td>@item.Status</td>
+            <td>@item.IssueDate.ToShortDateString()</td>
+            <td>@item.ExpirationDate.ToShortDateString()</td>
+            <td>@Html.ActionLink("Renew", "Renew", item)</td>
+        </tr>
+    }
+</table>
+
+<h3>Create License</h3>
+<form method="post" action="/License/Create">
+    <input type="text" name="Applicant" placeholder="Applicant Name" required />
+    <button type="submit">Submit</button>
+</form>

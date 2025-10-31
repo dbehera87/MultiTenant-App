@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: license-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: license-service
+  template:
+    metadata:
+      labels:
+        app: license-service
+    spec:
+      containers:
+      - name: license-service
+        image: license-service:latest
+        ports:
+        - containerPort: 80
